@@ -72,7 +72,14 @@ class TestMetricsUtils(unittest.TestCase):
         - Llamar a mae y verificar el valor esperado (para el ejemplo: (1+0+2)/3 = 1.0)
           (usar numpy.testing.assert_allclose o self.assertAlmostEqual)
         """
-        self.fail("TODO: implementar este test")
+        metrics = MetricsUtils()
+        y_true = [1, 2, 3]
+        y_pred = [2, 2, 1]
+
+        result = metrics.mae(y_true, y_pred)
+
+        # errores: -1, 0, +2  ->  absolutos: 1, 0, 2  ->  media 3/3 = 1.0
+        npt.assert_allclose(result, 1.0, rtol=1e-7)
 
     def test_mae_is_zero_for_identical_inputs(self):
         """Test que verifica que mae devuelve 0 cuando la predicción es perfecta.
