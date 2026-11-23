@@ -56,7 +56,12 @@ class TestMetricsUtils(unittest.TestCase):
         - Crear y_true con 3 valores e y_pred con 2 valores
         - Llamar a rmse y verificar que se lanza un ValueError (usar self.assertRaises)
         """
-        self.fail("TODO: implementar este test")
+        metrics = MetricsUtils()
+        y_true = [1.0, 2.0, 3.0]
+        y_pred = [1.0, 2.0]
+
+        with self.assertRaises(ValueError):
+            metrics.rmse(y_true, y_pred)
 
     def test_mae_basic_case(self):
         """Test que verifica que mae calcula correctamente el error absoluto medio.
