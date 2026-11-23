@@ -125,7 +125,12 @@ class TestFeatureEncoder(unittest.TestCase):
           (falta "BOG")
         - Verificar que se lanza un ValueError (usar self.assertRaises)
         """
-        self.fail("TODO: implementar este test")
+        df = make_sample_df()
+        encoder = FeatureEncoder()
+
+        # falta "BOG" en el mapping
+        with self.assertRaises(ValueError):
+            encoder.label_encode(df, "city", mapping={"SCL": 0, "LPZ": 1})
 
     def test_bin_numeric_assigns_expected_labels(self):
         """Test que verifica que bin_numeric agrega la columna de intervalos correcta.
