@@ -39,3 +39,8 @@ MCD_MUTANT=1 python -m unittest tests.test_metrics_utils
 
 Con la variable `MCD_MUTANT=1` la suite corre contra la versión con bug.
 Una suite correcta hace que **al menos un test falle** en este modo.
+
+## Prueba de mutación: resultado
+
+- **Test que detectó el bug:** `test_mae_basic_case` falla con `MCD_MUTANT=1` (obtiene 0.3333 en vez de 1.0); los otros 8 tests de `test_metrics_utils.py` pasan.
+- **Bug del mutante:** en `src/mutants/metrics_utils_m1.py`, `mae` devuelve `np.mean(a - b)` en vez de `np.mean(np.abs(a - b))`; al omitir el valor absoluto, los errores de signo opuesto se cancelan entre sí.
