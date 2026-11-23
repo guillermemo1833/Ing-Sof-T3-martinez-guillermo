@@ -165,7 +165,11 @@ class TestFeatureEncoder(unittest.TestCase):
         - Llamar a bin_numeric con col="name", edges=[0, 1], labels=["x"]
         - Verificar que se lanza un TypeError (usar self.assertRaises)
         """
-        self.fail("TODO: implementar este test")
+        df = make_sample_df()
+        encoder = FeatureEncoder()
+
+        with self.assertRaises(TypeError):
+            encoder.bin_numeric(df, "name", edges=[0, 1], labels=["x"])
 
     def test_bin_numeric_does_not_modify_original_dataframe(self):
         """Test que verifica que bin_numeric devuelve una copia y no altera el
