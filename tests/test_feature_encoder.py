@@ -69,7 +69,18 @@ class TestFeatureEncoder(unittest.TestCase):
         - Verificar que cada fila suma exactamente 1 en las columnas indicadoras
           (usar numpy.testing.assert_array_equal o comparar con una lista con self.assertEqual)
         """
-        self.fail("TODO: implementar este test")
+        df = make_sample_df()
+        encoder = FeatureEncoder()
+
+        result = encoder.one_hot(df, "city")
+
+        self.assertNotIn("city", result.columns)
+        indicator_cols = ["city_BOG", "city_LPZ", "city_SCL"]
+        for col in indicator_cols:
+            self.assertIn(col, result.columns)
+        # cada fila pertenece a una sola ciudad, por lo que suma exactamente 1
+        row_sums = result[indicator_cols].sum(axis=1)
+        self.assertEqual(list(row_sums), [1, 1, 1, 1])
 
     def test_one_hot_raises_keyerror_for_unknown_column(self):
         """Test que verifica que one_hot lanza KeyError con una columna inexistente.
