@@ -90,7 +90,11 @@ class TestFeatureEncoder(unittest.TestCase):
         - Llamar a one_hot con la columna "country"
         - Verificar que se lanza un KeyError (usar self.assertRaises)
         """
-        self.fail("TODO: implementar este test")
+        df = make_sample_df()
+        encoder = FeatureEncoder()
+
+        with self.assertRaises(KeyError):
+            encoder.one_hot(df, "country")
 
     def test_label_encode_assigns_codes_in_sorted_order(self):
         """Test que verifica que label_encode, sin mapping, asigna códigos
