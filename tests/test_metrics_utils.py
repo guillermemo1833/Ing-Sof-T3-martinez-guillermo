@@ -88,7 +88,12 @@ class TestMetricsUtils(unittest.TestCase):
         - Usar la misma lista como y_true e y_pred
         - Verificar que mae devuelve 0.0 (usar self.assertAlmostEqual)
         """
-        self.fail("TODO: implementar este test")
+        metrics = MetricsUtils()
+        y = [1.5, -2.0, 3.25, 0.0]
+
+        result = metrics.mae(y, y)
+
+        self.assertAlmostEqual(result, 0.0)
 
     def test_accuracy_basic_case(self):
         """Test que verifica que accuracy devuelve la fracción de aciertos.
