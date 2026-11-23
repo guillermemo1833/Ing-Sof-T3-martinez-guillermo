@@ -1,5 +1,7 @@
 # Unit Testing para Ciencia de Datos — Tarea 3
 
+**Estudiante:** Guillermo Martínez
+
 Proyecto mínimo con dos clases de utilidades y sus esqueletos de pruebas.
 
 ## Estructura
