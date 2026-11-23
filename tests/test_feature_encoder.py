@@ -106,7 +106,14 @@ class TestFeatureEncoder(unittest.TestCase):
         - Construir la Serie esperada: BOG->0, LPZ->1, SCL->2, con name="city_code" y dtype int64
         - Comparar con pandas.testing.assert_series_equal
         """
-        self.fail("TODO: implementar este test")
+        df = make_sample_df()
+        encoder = FeatureEncoder()
+
+        result = encoder.label_encode(df, "city")
+
+        # BOG -> 0, LPZ -> 1, SCL -> 2; city = ["SCL", "LPZ", "SCL", "BOG"]
+        expected = pd.Series([2, 1, 2, 0], name="city_code", dtype="int64")
+        pdt.assert_series_equal(result, expected)
 
     def test_label_encode_raises_valueerror_for_unseen_category(self):
         """Test que verifica que label_encode lanza ValueError cuando el mapping
